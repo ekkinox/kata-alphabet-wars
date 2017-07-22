@@ -1,0 +1,28 @@
+{
+    "name": "ekkinox/kata-alphabet-wars",
+    "description": "Code Kata - Alphabet Wars",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jonathan VUILLEMIN",
+            "email": "ekkinox@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Ekkinox\\KataAlphabetWars\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ekkinox\\KataAlphabetWars\\Test\\": "test/"
+        }
+    },
+    "require": {
+        "php": "^7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.0"
+    }
+}
