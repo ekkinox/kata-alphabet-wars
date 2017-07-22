@@ -4,6 +4,7 @@ namespace Ekkinox\KataAlphabetWars;
 
 use Ekkinox\KataAlphabetWars\Factory\ShelterFactory;
 use Ekkinox\KataAlphabetWars\Model\Shelter;
+use InvalidArgumentException;
 
 /**
  * @package Ekkinox\KataAlphabetWars
@@ -30,6 +31,8 @@ class BattleField
      * @param string $battleField
      *
      * @return string
+     *
+     * @throws InvalidArgumentException
      */
     public function getSurvivors(string $battleField): string
     {
@@ -81,6 +84,8 @@ class BattleField
      * @param string $battleField
      *
      * @return Shelter[]
+     *
+     * @throws InvalidArgumentException
      */
     private function extractShelters(string $battleField): array
     {
