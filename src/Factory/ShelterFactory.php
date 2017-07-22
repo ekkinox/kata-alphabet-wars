@@ -10,32 +10,14 @@ use Ekkinox\KataAlphabetWars\Model\Shelter;
 class ShelterFactory
 {
     /**
-     * @var SoldierFactory
-     */
-    private $soldierFactory;
-
-    /**
-     * @param SoldierFactory $soldierFactory
-     */
-    public function __construct(SoldierFactory $soldierFactory)
-    {
-        $this->soldierFactory = $soldierFactory;
-    }
-
-    /**
-     * @param string $names
+     * @param string $content
+     * @param string $leftSide
+     * @param string $rightSide
      *
      * @return Shelter
      */
-    public function create(string $names): Shelter
+    public function create(string $content, string $leftSide, string $rightSide): Shelter
     {
-        $shelter = new Shelter();
-
-        foreach (str_split($names) as $name)
-        {
-            $shelter->addSoldier($this->soldierFactory->create($name));
-        }
-
-        return $shelter;
+        return new Shelter($content, $leftSide, $rightSide);
     }
 }

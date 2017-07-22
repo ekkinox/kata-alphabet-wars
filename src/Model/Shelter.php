@@ -2,50 +2,96 @@
 
 namespace Ekkinox\KataAlphabetWars\Model;
 
+use Ekkinox\KataAlphabetWars\BattleField;
+use InvalidArgumentException;
+
 /**
  * @package Ekkinox\KataAlphabetWars\Model
  */
 class Shelter
 {
     /**
-     * Walls constants
+     * @var string
      */
-    public const LEFT_WALL  = '[';
-    public const RIGHT_WALL = ']';
+    private $insiders;
 
     /**
-     * @var Soldier[]
+     * @var string
      */
-    private $soldiers;
+    private $leftOutsiders;
 
     /**
-     * @param Soldier[] $soldiers
+     * @var string
      */
-    public function __construct(array $soldiers = [])
+    private $rightOutsiders;
+
+    /**
+     * @param string $insiders
+     * @param string $leftOutsiders
+     * @param string $rightOutsiders
+     */
+    public function __construct(string $insiders, string $leftOutsiders, string $rightOutsiders)
     {
-        $this->soldiers = $soldiers;
+        $this->insiders       = $insiders;
+        $this->leftOutsiders  = $leftOutsiders;
+        $this->rightOutsiders = $rightOutsiders;
+
+        $this->performInsideBombDetection();
     }
 
     /**
-     * @return Soldier[]
+     * @return string
      */
-    public function getSoldiers(): array
+    public function getInsiders(): string
     {
-        return $this->soldiers;
+        return $this->insiders;
     }
 
     /**
-     * @param Soldier $soldier
-     *
-     * @return self
+     * @return string
      */
-    public function addSoldier(Soldier $soldier): self
+    public function getLeftOutsiders(): string
     {
-        $this->soldiers[] = $soldier;
-
-        return $this;
+        return $this->leftOutsiders;
     }
 
+    /**
+     * @return string
+     */
+    public function getRightOutsiders(): string
+    {
+        return $this->rightOutsiders;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSurvivors(): string
+    {
+        return $this->shouldEvaporate() ? '' : $this->insiders;
+    }
+
+    /**
+     * @throws InvalidArgumentException
+     */
+    private function performInsideBombDetection(): void
+    {
+        if (substr_count($this->insiders, BattleField::NUCLEAR_BOMB) >= 1)
+        {
+            throw new InvalidArgumentException(
+                sprintf('Shelter insiders cannot contain a nuclear bomb: %s given', $this->insiders)
+            );
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    private function shouldEvaporate(): bool
+    {
+        return substr_count($this->leftOutsiders, BattleField::NUCLEAR_BOMB)
+            + substr_count($this->rightOutsiders, BattleField::NUCLEAR_BOMB) >= 2;
+    }
 }
 
 

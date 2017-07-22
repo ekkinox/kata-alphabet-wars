@@ -1,9 +1,8 @@
 <?php
 
-namespace Ekkinox\KataAlphabetWars\Test\Model;
+namespace Ekkinox\KataAlphabetWars\Test\UNit\Model;
 
 use Ekkinox\KataAlphabetWars\Model\Shelter;
-use Ekkinox\KataAlphabetWars\Model\Soldier;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,32 +13,73 @@ class ShelterTest extends TestCase
     /**
      * @covers \Ekkinox\KataAlphabetWars\Model\Shelter
      */
-    public function testSoldiersAreSetAtConstruct()
+    public function testConstruct()
     {
-        $soldiers = [
-            new Soldier('a'),
-            new Soldier('b')
-        ];
+        $subject = new Shelter('in', 'left', 'right');
 
-        $subject = new Shelter($soldiers);
+        $this->assertEquals('in', $subject->getInsiders());
+        $this->assertEquals('left', $subject->getLeftOutsiders());
+        $this->assertEquals('right', $subject->getRightOutsiders());
+    }
 
-        $this->assertCount(2, $subject->getSoldiers());
+    /**
+     * @covers \Ekkinox\KataAlphabetWars\Model\Shelter
+     *
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Shelter insiders cannot contain a nuclear bomb: # given
+     */
+    public function testItCannotConstructWithBombInside()
+    {
+        new Shelter('#', 'left', 'right');
     }
 
     /**
      * @covers \Ekkinox\KataAlphabetWars\Model\Shelter
      */
-    public function testItCanAddSoldier()
+    public function testItDoesNotEvaporateWithOneLeftBomb()
     {
-        $soldiers = [
-            new Soldier('a'),
-            new Soldier('b')
-        ];
+        $subject = new Shelter('in', '#', 'right');
 
-        $subject = new Shelter($soldiers);
+        $this->assertEquals('in', $subject->getSurvivors());
+    }
 
-        $subject->addSoldier(new Soldier('c'));
+    /**
+     * @covers \Ekkinox\KataAlphabetWars\Model\Shelter
+     */
+    public function testItDoesNotEvaporateWithOneRightBomb()
+    {
+        $subject = new Shelter('in', 'left', '#');
 
-        $this->assertCount(3, $subject->getSoldiers());
+        $this->assertEquals('in', $subject->getSurvivors());
+    }
+
+    /**
+     * @covers \Ekkinox\KataAlphabetWars\Model\Shelter
+     */
+    public function testItEvaporatesWithTwoLeftBombs()
+    {
+        $subject = new Shelter('in', '##', 'right');
+
+        $this->assertEquals('', $subject->getSurvivors());
+    }
+
+    /**
+     * @covers \Ekkinox\KataAlphabetWars\Model\Shelter
+     */
+    public function testItEvaporatesWithTwoRightBombs()
+    {
+        $subject = new Shelter('in', 'left', '##');
+
+        $this->assertEquals('', $subject->getSurvivors());
+    }
+
+    /**
+     * @covers \Ekkinox\KataAlphabetWars\Model\Shelter
+     */
+    public function testItEvaporatesWithTwoBombsOnEachSide()
+    {
+        $subject = new Shelter('in', '#', '#');
+
+        $this->assertEquals('', $subject->getSurvivors());
     }
 }
