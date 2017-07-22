@@ -55,6 +55,7 @@ class BattleFieldTest extends TestCase
     {
         return [
             'a'                    => 'a',
+            '#'                    => '',
             'abde[fgh]ijk'         => 'abdefghijk',
             'ab#de[fgh]ijk'        => 'fgh',
             'ab#de[fgh]ij#k'       => "",
