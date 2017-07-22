@@ -70,7 +70,7 @@ class Shelter
      */
     public function getSurvivors(): string
     {
-        return $this->shouldEvaporate() ? '' : $this->insiders;
+        return $this->shouldBeDestroyed() ? '' : $this->insiders;
     }
 
     /**
@@ -89,7 +89,7 @@ class Shelter
     /**
      * @return bool
      */
-    private function shouldEvaporate(): bool
+    private function shouldBeDestroyed(): bool
     {
         return substr_count($this->leftOutsiders, BattleField::NUCLEAR_BOMB)
             + substr_count($this->rightOutsiders, BattleField::NUCLEAR_BOMB) >= 2;

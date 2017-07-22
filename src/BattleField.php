@@ -40,7 +40,7 @@ class BattleField
         $outsidersGroups = $this->extractOutsidersGroups($battleField);
         $shelters        = $this->extractShelters($battleField);
 
-        if (!$this->willOutsidersSurvive($outsidersGroups))
+        if (!$this->shouldOutsidersSurvive($outsidersGroups))
         {
             foreach ($shelters as $shelter)
             {
@@ -107,7 +107,7 @@ class BattleField
      *
      * @return bool
      */
-    private function willOutsidersSurvive(array $outsidersGroups): bool
+    private function shouldOutsidersSurvive(array $outsidersGroups): bool
     {
         foreach ($outsidersGroups as $outsiders)
         {
