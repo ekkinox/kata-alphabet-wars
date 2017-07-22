@@ -10,14 +10,14 @@ use Ekkinox\KataAlphabetWars\Model\Shelter;
 class ShelterFactory
 {
     /**
-     * @param string $content
-     * @param string $leftSide
-     * @param string $rightSide
+     * @param string $insiders
+     * @param string $leftOutsiders
+     * @param string $rightOutsiders
      *
      * @return Shelter
      */
-    public function create(string $content, string $leftSide, string $rightSide): Shelter
+    public function create(string $insiders, string $leftOutsiders, string $rightOutsiders): Shelter
     {
-        return new Shelter($content, $leftSide, $rightSide);
+        return new Shelter($insiders, $leftOutsiders, $rightOutsiders);
     }
 }
