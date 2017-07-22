@@ -93,5 +93,3 @@ class Shelter
             + substr_count($this->rightOutsiders, BattleField::NUCLEAR_BOMB) >= 2;
     }
 }
-
-

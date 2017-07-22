@@ -115,5 +115,3 @@ class BattleField
         return true;
     }
 }
-
-
