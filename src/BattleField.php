@@ -10,7 +10,7 @@ use Ekkinox\KataAlphabetWars\Model\Shelter;
  */
 class BattleField
 {
-    public const NUCLEAR_BOMB                 = '#';
+    public const NUCLEAR_BOMB               = '#';
     private const SHELTERS_EXTRACTION_REGEX = '/\[([^\]]*)\]/';
 
     /**
