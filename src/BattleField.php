@@ -33,9 +33,9 @@ class BattleField
      */
     public function getSurvivors(string $battleField): string
     {
-        $survivors            = '';
-        $outsidersGroups      = $this->extractOutsidersGroups($battleField);
-        $shelters             = $this->extractShelters($battleField);
+        $survivors       = '';
+        $outsidersGroups = $this->extractOutsidersGroups($battleField);
+        $shelters        = $this->extractShelters($battleField);
 
         if (!$this->willOutsidersSurvive($outsidersGroups))
         {
