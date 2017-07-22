@@ -29,6 +29,8 @@ class Shelter
      * @param string $insiders
      * @param string $leftOutsiders
      * @param string $rightOutsiders
+     *
+     * @throws InvalidArgumentException
      */
     public function __construct(string $insiders, string $leftOutsiders, string $rightOutsiders)
     {
