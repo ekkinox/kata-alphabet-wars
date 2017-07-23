@@ -54,9 +54,12 @@ class BattleFieldTest extends TestCase
     private function getValidScenarios(): array
     {
         return [
+            // personal tests
             'a'                                   => 'a',
             '#'                                   => '',
             'a#'                                  => '',
+            '##a[a]b[c]#def[gh]ijk[lmn]#op[qr]#s' => "cghlmn",
+            // kata topic tests
             'abde[fgh]ijk'                        => 'abdefghijk',
             'ab#de[fgh]ijk'                       => 'fgh',
             'ab#de[fgh]ij#k'                      => "",
@@ -67,8 +70,7 @@ class BattleFieldTest extends TestCase
             '[a]#[b]#[c]'                         => "ac",
             '[a]#b#[c][d]'                        => "d",
             '[a][b][c]'                           => "abc",
-            '##a[a]b[c]#'                         => "c",
-            '##a[a]b[c]#def[gh]ijk[lmn]#op[qr]#s' => "cghlmn",
+            '##a[a]b[c]#'                         => "c"
         ];
     }
 }
