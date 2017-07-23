@@ -11,7 +11,10 @@ use InvalidArgumentException;
  */
 class BattleField
 {
-    public const NUCLEAR_BOMB    = '#';
+    /** Nuclear bomb symbol */
+    public const NUCLEAR_BOMB = '#';
+
+    /** Shelters isolation regular expression */
     private const SHELTERS_REGEX = '/\[([^\]]*)\]/';
 
     /**
