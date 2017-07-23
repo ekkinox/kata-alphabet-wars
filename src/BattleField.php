@@ -11,8 +11,8 @@ use InvalidArgumentException;
  */
 class BattleField
 {
-    public const NUCLEAR_BOMB               = '#';
-    private const SHELTERS_EXTRACTION_REGEX = '/\[([^\]]*)\]/';
+    public const NUCLEAR_BOMB    = '#';
+    private const SHELTERS_REGEX = '/\[([^\]]*)\]/';
 
     /**
      * @var ShelterFactory
@@ -53,7 +53,7 @@ class BattleField
             {
                 foreach ($shelters as $shelter)
                 {
-                    if (current($shelters) == $shelters[0])
+                    if (current($shelters) === $shelters[0])
                     {
                         $survivors .= $shelter->getLeftOutsiders();
                     }
@@ -77,7 +77,7 @@ class BattleField
      */
     private function extractOutsidersGroups(string $battleField): array
     {
-        return preg_split(static::SHELTERS_EXTRACTION_REGEX, $battleField);
+        return preg_split(static::SHELTERS_REGEX, $battleField);
     }
 
     /**
@@ -92,7 +92,7 @@ class BattleField
         $shelters        = [];
         $outsidersGroups = $this->extractOutsidersGroups($battleField);
 
-        preg_match_all(static::SHELTERS_EXTRACTION_REGEX, $battleField, $matches, PREG_SET_ORDER);
+        preg_match_all(static::SHELTERS_REGEX, $battleField, $matches, PREG_SET_ORDER);
 
         foreach($matches as $key => $match)
         {

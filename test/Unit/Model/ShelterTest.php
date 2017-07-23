@@ -36,7 +36,7 @@ class ShelterTest extends TestCase
     /**
      * @covers \Ekkinox\KataAlphabetWars\Model\Shelter
      */
-    public function testItDoesNotEvaporateWithOneLeftBomb()
+    public function testItShouldNotBeDestroyedWithOneLeftBomb()
     {
         $subject = new Shelter('in', '#', 'right');
 
@@ -46,7 +46,7 @@ class ShelterTest extends TestCase
     /**
      * @covers \Ekkinox\KataAlphabetWars\Model\Shelter
      */
-    public function testItDoesNotEvaporateWithOneRightBomb()
+    public function testItShouldNotBeDestroyedWithOneRightBomb()
     {
         $subject = new Shelter('in', 'left', '#');
 
@@ -56,7 +56,7 @@ class ShelterTest extends TestCase
     /**
      * @covers \Ekkinox\KataAlphabetWars\Model\Shelter
      */
-    public function testItEvaporatesWithTwoLeftBombs()
+    public function testItShouldBeDestroyedWithTwoLeftBombs()
     {
         $subject = new Shelter('in', '##', 'right');
 
@@ -66,7 +66,7 @@ class ShelterTest extends TestCase
     /**
      * @covers \Ekkinox\KataAlphabetWars\Model\Shelter
      */
-    public function testItEvaporatesWithTwoRightBombs()
+    public function testItShouldBeDestroyedWithTwoRightBombs()
     {
         $subject = new Shelter('in', 'left', '##');
 
@@ -76,7 +76,7 @@ class ShelterTest extends TestCase
     /**
      * @covers \Ekkinox\KataAlphabetWars\Model\Shelter
      */
-    public function testItEvaporatesWithTwoBombsOnEachSide()
+    public function testItShouldBeDestroyedWithTwoBombsOnEachSide()
     {
         $subject = new Shelter('in', '#', '#');
 

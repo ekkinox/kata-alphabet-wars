@@ -54,19 +54,21 @@ class BattleFieldTest extends TestCase
     private function getValidScenarios(): array
     {
         return [
-            'a'                    => 'a',
-            '#'                    => '',
-            'abde[fgh]ijk'         => 'abdefghijk',
-            'ab#de[fgh]ijk'        => 'fgh',
-            'ab#de[fgh]ij#k'       => "",
-            '##abde[fgh]ijk'       => "",
-            '##abde[fgh]ijk[mn]op' => "mn",
-            '#ab#de[fgh]ijk[mn]op' => "mn",
-            '#abde[fgh]i#jk[mn]op' => "mn",
-            '[a]#[b]#[c]'          => "ac",
-            '[a]#b#[c][d]'         => "d",
-            '[a][b][c]'            => "abc",
-            '##a[a]b[c]#'          => "c"
+            'a'                                   => 'a',
+            '#'                                   => '',
+            'a#'                                  => '',
+            'abde[fgh]ijk'                        => 'abdefghijk',
+            'ab#de[fgh]ijk'                       => 'fgh',
+            'ab#de[fgh]ij#k'                      => "",
+            '##abde[fgh]ijk'                      => "",
+            '##abde[fgh]ijk[mn]op'                => "mn",
+            '#ab#de[fgh]ijk[mn]op'                => "mn",
+            '#abde[fgh]i#jk[mn]op'                => "mn",
+            '[a]#[b]#[c]'                         => "ac",
+            '[a]#b#[c][d]'                        => "d",
+            '[a][b][c]'                           => "abc",
+            '##a[a]b[c]#'                         => "c",
+            '##a[a]b[c]#def[gh]ijk[lmn]#op[qr]#s' => "cghlmn",
         ];
     }
 }
