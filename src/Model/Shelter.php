@@ -74,6 +74,8 @@ class Shelter
     }
 
     /**
+     * @return void
+     *
      * @throws InvalidArgumentException
      */
     private function performInsideBombDetection(): void
